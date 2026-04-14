@@ -1,0 +1,282 @@
+/* 全体のスタイルを整える */
+body {    
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 350; 
+    line-height: 1.5;
+    color: #333;
+    background-color: #fbf8ef;
+}
+
+/* 見出し */
+h1{
+    font-size: 1.8rem;
+    color: #222;
+    margin-bottom: 30px;
+    padding-bottom: 2px;    /* 文字と線の間の距離 */
+    border-bottom: 2px solid #507ea4; /* 紺色（ネイビー）の下線。太さは2pxでスッキリと */
+    display: inline-block;
+}
+strong {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #222;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #222;
+    margin-bottom: 30px;
+    padding-bottom: 2px;    /* 文字と線の間の距離 */
+    border-bottom: 2px solid #507ea4; /* 紺色（ネイビー）の下線。太さは2pxでスッキリと */
+    display: inline-block;    /* 線が文字の長さと同じになります（横いっぱいに引くならこの行を消す） */
+}
+
+/* セクション全体を中央に寄せる */
+.container {
+    max-width: 1000px;  /* 読みやすい幅に制限 */
+    margin: 0 auto;    /* 左右中央に配置 */
+    padding: 0 50px;
+}
+
+.header {
+    display: flex;       /* 横に並べる */
+    align-items: center;  /* 上下の中央を揃える */
+    justify-content: center; /* 画面の真ん中に置く */
+    gap: 20px;           /* 文字と写真の間の隙間 */
+    padding: 30px;
+}
+
+/* 2. 左側の文字の箱：中身を縦に並べる */
+.header-text-group {
+    display: block;      /* 縦に積む設定 */
+    text-align: left;
+    flex: 1;
+    max-width: 600px;
+    min-width: 500px;
+}
+
+/* 3. 文字同士がくっつかないように隙間を作る */
+.header-text-group h1, 
+.header-text-group p {
+    margin-bottom: 15px; /* 下に余白を作ることで縦に並んでいるのが明確に */
+
+}
+
+/* 項目を横並びにする */
+.research-item, .R-item, .engagements-item {
+    display: flex;        /* 写真と文字を横に並べる */
+    align-items: flex-start; /* 上端で揃える（写真と文字の高さが違っても綺麗に見えます） */
+    gap: 30px;           /* 写真と文字の間の隙間 */
+    margin-bottom: 50px;  /* 項目ごとの下の余白 */
+    text-align: left;     /* 文字を左寄せにする */
+}
+
+/* 写真部分が縮まないように固定 */
+.research-item figure,
+.R-item figure, 
+.engagements-item figure {
+    flex-shrink: 0;
+    margin: 0;
+    margin-top: 18px;
+}
+
+/* 文字部分の箱を広げる */
+.research-info-group, .R-info-group, .engagements-info-group {
+    flex: 1;
+    max-width: 650px;
+}
+
+/* 各段落の隙間を調整 */
+.research-info-group p, .R-info-group p, .engagements-info-group p {
+    margin-bottom: 10px;
+}
+
+.research-info-group .info, .R-info-group .info, .engagements-info-group .info {
+    font-size: 0.8rem;    /* 1remより少し小さく設定 */
+    color: #666;          /* 真っ黒ではなく少しグレーにして、情報の優先度を下げます */
+    margin-bottom: 5px;   /* 行間の隙間を少し詰めてスッキリさせます */
+    line-height: 1.0;   /* 行間を詰めることで、情報がまとまって見えます */
+}
+
+/* リンク部分もinfoクラス内にある場合は、フォントサイズを合わせます */
+.research-info-group .info a,
+.R-info-group .info a,
+.engagements-info-group .info a {
+    font-size: 0.8rem;
+    color: #507ea4;       /* リンクとわかる色に。お好みで調整してください */
+}
+
+/* ボタンとアイコンを並べる親要素 */
+.header-action-group {
+    display: flex;
+    align-items: center; /* 上下の中央を揃える */
+    gap: 20px;          /* ボタンとアイコンの間の隙間 */
+    margin-top: 30px;    /* 上の文章との距離（これで下線との距離を調整） */
+}
+
+/* ダウンロードCVボタン */
+.btn {
+display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    
+    /* ボタンの色：先ほどの縹色（青）を背景に、文字を白に */
+    color: #fff !important; /* 強制的に白に */
+    background-color: #507ea4; /* 縹色 */
+    
+    border-radius: 6px;       /* 角を少し丸く */
+    border: 2px solid #507ea4; /* 背景と同じ色の枠線 */
+    transition: all 0.3s ease;
+}
+
+/* ボタンにマウスを乗せた時（ホバー） */
+.btn:hover {
+    color: #507ea4 !important; /* 文字を青に */
+    background-color: transparent; /* 背景を透明に */
+}
+
+/* SNSアイコンのリスト */
+.sns-icons {
+    display: flex;
+    list-style: none; /* 点を消す */
+    margin: 0;
+    padding: 0;
+    gap: 15px; /* アイコン同士の隙間 */
+}
+
+/* 各アイコン（li）のサイズ */
+.sns-icons li {
+    font-size: 1.8rem; /* アイコンを少し大きく表示 */
+}
+
+/* アイコンのリンク（a） */
+.sns-icons a {
+    text-decoration: none;
+    color: #507ea4; /* 初期状態は薄いグレー */
+    transition: color 0.3s ease;
+}
+
+/* アイコンにマウスを乗せた時（ホバー） */
+.sns-icons a:hover {
+    color: #333; /* 濃いグレーに */
+}
+
+.site-footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #666; /* フッターの文字は少しグレーにして、目立ちすぎないように */
+    font-size: 0.8rem;
+}
+
+/* ナビゲーション */
+/* ナビゲーション全体の枠 */
+.navbar {
+    width: 100%;
+    background-color: #fbf8ef;       /* 清潔感のある白 */
+    border-bottom: 1px solid #507ea4; /* 薄い境界線でミニマルに */
+    position: sticky;             /* 画面上部に固定（スクロールしても付いてくる） */
+    top: 0;
+    z-index: 1000;
+}
+
+/* リスト（ul）を4等分にする設定 */
+.navbar ul {
+    display: flex;                /* 横並びにする */
+    list-style: none;             /* 点を消す */
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1000px;            /* コンテンツの幅に合わせる */
+}
+
+/* 各メニュー項目（li） */
+.navbar li {
+    flex: 1;                      /* これで4つが均等に（4分割）並びます */
+    text-align: center;           /* 文字を中央に */
+}
+
+/* リンク（a）の装飾 */
+.navbar a {
+    display: block;               /* 領域全体をクリック可能に */
+    padding: 15px 0;
+    text-decoration: none;        /* 下線を消す */
+    color: #222;                  /* 濃いグレー（先ほどのbodyと同じ） */
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: all 0.3s ease;    /* 変化を滑らかに */
+}
+
+/* マウスを乗せた時の反応（ホバー） */
+.navbar a:hover {
+    color: #000;
+    background-image: url('images/pixel.png'); /* 模様の画像を指定 */
+    background-size: 500px; 
+    background-repeat: repeat;
+    background-position: center;
+
+    /* 【重要】そのままでは濃すぎるので、白を混ぜてうっすら表示させます */
+    background-color: rgba(255, 255, 255, 0.85); 
+    background-blend-mode: overlay; /* これで画像がうっすら背景に馴染みます */
+    transition: all 0.2s ease; /* 模様がふわっと出るように少し時間を長めに */
+}
+
+/* レスポンシブ対応 */
+/* 画面の幅が768px以下（スマホ・タブレット）になった時の設定 */
+@media (max-width: 768px) {
+    /* 1. コンテナーの余白を少し削る */
+    .container {
+        padding: 0 20px;
+    }
+
+    /* 2. ヘッダー（自己紹介）を縦並びに */
+    .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .header-text-group {
+        min-width: 100%;
+        text-align: center;
+    }
+
+    /* 3. ナビゲーションを2列ずつにする（4つ並ぶと狭いため） */
+    .navbar ul {
+        flex-wrap: wrap;
+    }
+    .navbar li {
+        flex: 0 0 50%; /* 半分の幅にする */
+        border-bottom: 1px solid #eee;
+    }
+
+    /* 4. 研究項目・ポートフォリオを縦並びに */
+    .research-item, 
+    .R-item, 
+    .engagements-item {
+        flex-direction: column; /* 縦に積む */
+        align-items: center;    /* 中央揃え */
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+
+    /* スマホ時は写真の上の余白を消してスッキリさせる */
+    .research-item figure,
+    .R-item figure, 
+    .engagements-item figure {
+        margin-top: 0;
+    }
+
+    /* 5. 文字部分の幅を画面いっぱいに */
+    .research-info-group, 
+    .R-info-group, 
+    .engagements-info-group {
+        max-width: 100%;
+        text-align: left; /* 説明文は左寄せが読みやすい */
+    }
+
+    /* 6. 見出しのサイズを少し小さくしてスマホに合わせる */
+    h1, h2 {
+        font-size: 1.5rem;
+    }
+}
