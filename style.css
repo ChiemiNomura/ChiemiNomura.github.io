@@ -31,6 +31,16 @@ h2 {
     display: inline-block;    /* 線が文字の長さと同じになります（横いっぱいに引くならこの行を消す） */
 }
 
+/* ジャンプした時の位置を調整（ナビゲーションバーの高さ分だけ余裕を持たせる） */
+h1[id], 
+h2[id] {
+    scroll-margin-top: 80px; /* ★ここをメニューの高さ（60px〜80px程度）に合わせて調整 */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 /* セクション全体を中央に寄せる */
 .container {
     max-width: 1000px;  /* 読みやすい幅に制限 */
@@ -131,36 +141,90 @@ display: inline-block;
     transition: all 0.3s ease;
 }
 
-/* ボタンにマウスを乗せた時（ホバー） */
-.btn:hover {
-    color: #507ea4 !important; /* 文字を青に */
-    background-color: transparent; /* 背景を透明に */
+/* 親要素：全体を縦に並べる */
+.header-action-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;      /* 上段（ボタン・SNS）と下段（メアド）の隙間 */
+    margin-top: 30px;
 }
 
-/* SNSアイコンのリスト */
+/* 上段：ボタンとSNSを横に並べる */
+.action-top-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* --- ボタンの設定 --- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff !important;
+    background-color: #507ea4;
+    border-radius: 6px;
+    border: 2px solid #507ea4;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    color: #507ea4 !important;
+    background-color: transparent;
+}
+
+
+/* --- SNSアイコンの設定 --- */
 .sns-icons {
     display: flex;
-    list-style: none; /* 点を消す */
+    list-style: none;
     margin: 0;
     padding: 0;
-    gap: 15px; /* アイコン同士の隙間 */
+    gap: 15px;
 }
 
-/* 各アイコン（li）のサイズ */
 .sns-icons li {
-    font-size: 1.8rem; /* アイコンを少し大きく表示 */
+    /* 以前より少しだけサイズを調整（メアドとのバランスのため） */
+    font-size: 1.8rem; 
 }
 
-/* アイコンのリンク（a） */
 .sns-icons a {
     text-decoration: none;
-    color: #507ea4; /* 初期状態は薄いグレー */
+    color: #507ea4;
     transition: color 0.3s ease;
 }
 
-/* アイコンにマウスを乗せた時（ホバー） */
 .sns-icons a:hover {
-    color: #333; /* 濃いグレーに */
+    color: #666;
+}
+
+/* --- 下段：メールアドレスの表示設定 --- */
+.email-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem; /* 読みやすいサイズに */
+    color: #333;        /* 本文に近い色で信頼感を */
+}
+
+.email-display i {
+    color: #507ea4;     /* アイコンはテーマカラーの青に */
+    font-size: 1.2rem;
+}
+
+/* --- レスポンシブ（スマホ）対応 --- */
+@media (max-width: 768px) {
+    .action-top-row {
+        flex-direction: column; /* スマホではボタンとSNSも縦に積む */
+        gap: 15px;
+    }
+    
+    .email-display {
+        justify-content: center; /* スマホでは中央寄せ */
+    }
 }
 
 .site-footer {
@@ -171,6 +235,10 @@ display: inline-block;
 }
 
 /* ナビゲーション */
+
+.menu-toggle {
+    display: none; /* PCでは三本線は隠す */
+}
 /* ナビゲーション全体の枠 */
 .navbar {
     width: 100%;
@@ -222,6 +290,54 @@ display: inline-block;
 }
 
 /* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .navbar-container {
+        display: flex;
+        justify-content: flex-end; /* ボタンを右に寄せる */
+        padding: 10px 20px;
+    }
+
+    .menu-toggle {
+        display: block; /* スマホで三本線を表示 */
+        background: none;
+        border: none;
+        color: #507ea4; /* 薄藍色 */
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* メニューリストの初期状態：隠しておく */
+    .navbar ul {
+        display: none; 
+        flex-direction: column;
+        
+        /* --- ここを修正 --- */
+        width: 30%;           /* 1/4(25%)だと文字がはみ出す可能性があるので30%前後が安全です */
+        min-width: 150px;      /* あまりに細くなりすぎないように最小幅を設定 */
+        left: auto;            /* 左端固定を解除 */
+        right: 0;              /* 右端に寄せる */
+        background-color: #fbf8ef;
+        position: absolute;
+        top: 50px; 
+        border: 1px solid #507ea4; /* 全体を囲う枠線にすると浮いて見えて綺麗です */
+        border-top: none;
+    }
+
+    /* JavaScriptで 'active' クラスがついた時だけ表示 */
+    .navbar ul.active {
+        display: flex;
+    }
+
+    .navbar li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+
+    .navbar a {
+        padding: 15px;
+    }
+}
+
 /* 画面の幅が768px以下（スマホ・タブレット）になった時の設定 */
 @media (max-width: 768px) {
     /* 1. コンテナーの余白を少し削る */

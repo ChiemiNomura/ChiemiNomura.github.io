@@ -9,12 +9,16 @@
 </head>
 <body>
     <nav class="navbar">
-        <ul>
-            <li><a href="#top">Top</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#Rportfolio">R Portfolio</a></li>
-            <li><a href="#engagements">Publications & Engagements</a></li>
-        </ul>
+      <div class="navbar-container"> <button class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+      </button>  
+      <ul class="nav-list">
+        <li><a href="#top">Top</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#Rportfolio">R Portfolio</a></li>
+        <li><a href="#engagements">Publications & Engagements</a></li>
+      </ul>
+      </div>
     </nav>
 
   <div class="container">
@@ -28,24 +32,25 @@
             including comparative studies between Mexico and Japan.
           </p>
           <div class="header-action-group">
-            <a href="resume.pdf" class="btn" download>Download CV.pdf</a>
-            <ul class="sns-icons">
-              <li>
-                <a href="your_linkedin_profile_url" target="blank" title="LinkedIn">
-                  <i class="fab fa-linkedin"></i>
-                </a>
-              </li>
-              <li>
-                <a href="mailto:your_email@address.com" title="Email">
-                  <i class="fab fa-envelope"></i>
-                </a>
-              </li>
-              <li>
-                <a href="your_github_profile_url" target="blank" title="GitHub">
-                  <i class="fab fa-github"></i>
-                </a>
-              </li>
-            </ul>
+            <div class="action-top-row">
+              <a href="Chiemi Nomura CV.pdf" class="btn" download>Download CV.pdf</a>
+              <ul class="sns-icons">
+                <li>
+                  <a href="https://www.linkedin.com/in/your_id/" target="_blank" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/your_id" target="_blank" title="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="email-display">
+              <i class="fa-solid fa-envelope"></i>
+              <span>chiemi.nomura.0416 [at] gmail.com</span>
+            </div>
           </div>
         </div>
 
@@ -59,7 +64,7 @@
 
       <div class="research-item">
         <figure>
-          <img src="images/BAtesis.png" alt="BAtesis" style="width: 200px;height: 200px;object-fit:cover;border-radius:50%;margin-bottom:20px;" />
+          <img src="images/CapI.png" alt="CapI" style="width: 200px;height: 200px;object-fit:cover;border-radius:50%;margin-bottom:20px;" />
         </figure>
 
         <div class="research-info-group">
@@ -210,5 +215,26 @@
     </footer>
 
   </div>
+  <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navList = document.querySelector('.nav-list');
+
+    // ハンバーガーボタンをクリックした時の動作
+    menuToggle.addEventListener('click', (event) => {
+      navList.classList.toggle('active');
+      // ボタン自体のクリックが「外側クリック」として判定されないようにイベントの伝播を止めます
+      event.stopPropagation();
+    });
+
+    // 画面全体（document）をクリックした時の動作
+    document.addEventListener('click', (event) => {
+      // メニューが開いている、かつ、クリックされた場所がメニュー内（navList）でもボタン（menuToggle）でもない場合
+      if (navList.classList.contains('active')) {
+        if (!navList.contains(event.target) && !menuToggle.contains(event.target)) {
+          navList.classList.remove('active');
+        }
+      }
+    });
+    </script>
 </body>
 </html>
